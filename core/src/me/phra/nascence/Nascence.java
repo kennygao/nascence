@@ -2,6 +2,7 @@ package me.phra.nascence;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -10,13 +11,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Nascence implements ApplicationListener {
     private SpriteBatch batch;
     private Texture texture;
-    private BitmapFont font;
+    private BitmapFont debug;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         texture = new Texture("badlogic.jpg");
-        font = new BitmapFont();
+        debug = new BitmapFont();
+        debug.setColor(Color.BLACK);
     }
 
     @Override
@@ -31,8 +33,20 @@ public class Nascence implements ApplicationListener {
 
         batch.begin();
         batch.draw(texture, 0, 0);
-        font.draw(batch, "nascence", 100, 100);
+        debug.drawMultiLine(batch, getDebug(), 0, Gdx.graphics.getHeight());
         batch.end();
+    }
+
+    private String getDebug() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("height=").append(Gdx.graphics.getHeight()).append("\n");
+        sb.append("width=").append(Gdx.graphics.getWidth()).append("\n");
+        sb.append("fullscreen=").append(Gdx.graphics.isFullscreen()).append("\n");
+        sb.append("rendercalls=").append(batch.renderCalls).append("\n");
+        sb.append("totalrendercalls=").append(batch.totalRenderCalls).append("\n");
+        sb.append("deltatime=").append(Gdx.graphics.getDeltaTime()).append("\n");
+        sb.append("fps=").append(Gdx.graphics.getFramesPerSecond()).append("\n");
+        return sb.toString();
     }
 
     @Override
@@ -47,7 +61,7 @@ public class Nascence implements ApplicationListener {
 
     @Override
     public void dispose() {
-        font.dispose();
+        debug.dispose();
         texture.dispose();
         batch.dispose();
     }
