@@ -12,6 +12,8 @@ public class Nascence implements ApplicationListener {
     private SpriteBatch batch;
     private Texture texture;
     private BitmapFont debug;
+    private int width;
+    private int height;
 
     @Override
     public void create() {
@@ -23,7 +25,9 @@ public class Nascence implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-
+        Gdx.gl.glViewport(0, 0, width, height);
+        this.width = width;
+        this.height = height;
     }
 
     @Override
@@ -33,14 +37,14 @@ public class Nascence implements ApplicationListener {
 
         batch.begin();
         batch.draw(texture, 0, 0);
-        debug.drawMultiLine(batch, getDebug(), 0, Gdx.graphics.getHeight());
+        debug.drawMultiLine(batch, getDebug(), 0, this.height);
         batch.end();
     }
 
     private String getDebug() {
         StringBuilder sb = new StringBuilder();
-        sb.append("height=").append(Gdx.graphics.getHeight()).append("\n");
-        sb.append("width=").append(Gdx.graphics.getWidth()).append("\n");
+        sb.append("height=").append(this.height).append("\n");
+        sb.append("width=").append(this.width).append("\n");
         sb.append("fullscreen=").append(Gdx.graphics.isFullscreen()).append("\n");
         sb.append("rendercalls=").append(batch.renderCalls).append("\n");
         sb.append("totalrendercalls=").append(batch.totalRenderCalls).append("\n");
