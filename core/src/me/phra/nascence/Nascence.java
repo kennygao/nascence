@@ -41,7 +41,7 @@ public class Nascence implements ApplicationListener {
         batch.begin();
         sprite.setPosition(0, 0);
         sprite.draw(batch);
-        debug.drawMultiLine(batch, getDebug(), 0, this.height);
+        debug.draw(batch, getDebug(), 0, this.height);
         batch.end();
     }
 
