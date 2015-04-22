@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Nascence implements ApplicationListener {
     private SpriteBatch batch;
     private Texture texture;
+    private Sprite sprite;
     private BitmapFont debug;
     private int width;
     private int height;
@@ -19,6 +21,7 @@ public class Nascence implements ApplicationListener {
     public void create() {
         batch = new SpriteBatch();
         texture = new Texture("male.png");
+        sprite = new Sprite(texture);
         debug = new BitmapFont();
         debug.setColor(Color.BLACK);
     }
@@ -36,7 +39,8 @@ public class Nascence implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        batch.draw(texture, 0, 0);
+        sprite.setPosition(0, 0);
+        sprite.draw(batch);
         debug.drawMultiLine(batch, getDebug(), 0, this.height);
         batch.end();
     }
