@@ -20,7 +20,7 @@ public class Nascence implements ApplicationListener {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        texture = new Texture("male.png");
+        texture = new Texture("background.png");
         sprite = new Sprite(texture);
         debug = new BitmapFont();
         debug.setColor(Color.BLACK);
