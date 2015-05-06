@@ -46,15 +46,14 @@ public class Nascence implements ApplicationListener {
     }
 
     private String getDebug() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("height=").append(this.height).append("\n");
-        sb.append("width=").append(this.width).append("\n");
-        sb.append("fullscreen=").append(Gdx.graphics.isFullscreen()).append("\n");
-        sb.append("rendercalls=").append(batch.renderCalls).append("\n");
-        sb.append("totalrendercalls=").append(batch.totalRenderCalls).append("\n");
-        sb.append("deltatime=").append(Gdx.graphics.getDeltaTime()).append("\n");
-        sb.append("fps=").append(Gdx.graphics.getFramesPerSecond()).append("\n");
-        return sb.toString();
+        return "nascence" + "\n" +
+                "height=" + this.height + "\n" +
+                "width=" + this.width + "\n" +
+                "fullscreen=" + Gdx.graphics.isFullscreen() + "\n" +
+                "rendercalls=" + batch.renderCalls + "\n" +
+                "totalrendercalls=" + batch.totalRenderCalls + "\n" +
+                "deltatime=" + Gdx.graphics.getDeltaTime() + "\n" +
+                "fps=" + Gdx.graphics.getFramesPerSecond() + "\n";
     }
 
     @Override
